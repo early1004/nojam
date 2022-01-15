@@ -48,10 +48,10 @@ h1 {text-align: center;}
       <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="M22.818,37.8449c-2.5901-0.9575-3.9136-3.8335-2.956-6.4235l9.3796,3.4675C28.2841,37.479,25.4081,38.8024,22.818,37.8449z"/>
     </g>
   </svg>
+  <h3><span id="clicks">100</span> <span id="clicks2">번 남았다!</span></h3>
   <canvas id="hohoho" width=350>
     <div class="txtStyle"></div>
-</canvas>
-  <p><h3><span id="clicks">100</span> <span id="clicks2">번 남았다!</span></h3></p>
+  </canvas>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
@@ -71,7 +71,7 @@ function make() {
   if (10 == counter) {
     $('#hohoho').show();
     $('#clicks2').hide();
-    $('#clicks').text("");
+    $('#clicks').text("메롱");
     $('#jiok-target').addClass('tada');
     var ctx = document.querySelector("canvas").getContext("2d"),
     dashLen = 220, dashOffset = dashLen, speed = 10,
