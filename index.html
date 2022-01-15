@@ -10,7 +10,7 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; }
 .jack svg { width: 50%; cursor: pointer; }
 h1 {text-align: center;}
 #jiok-target { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='42' height='50' viewport='0 0 100 100' style='fill:black;font-size:25px;'><text y='50%'>🗡️</text></svg>") 16 0, auto; }
-.tada { animation: 1s tada infinite; }
+.tada { animation: 2s tada infinite; }
 @keyframes tada {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
@@ -21,7 +21,7 @@ h1 {text-align: center;}
 
 <body>
 <div class="jack">
-  <h1>기억의 지옥 문을 지키는 호박놈을 무찌르자</h1>
+  <h1>기억의 지옥문을 지키는</br>호박놈을 무찌르자</h1>
   <h2>100번만 때리면 죽을꺼같다!</h2>
   <!-- openmoji.org -->
   <svg id="jiok-target" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@ h1 {text-align: center;}
     </g>
   </svg>
   <h3><span id="clicks">100</span> <span id="clicks2">번 남았다!</span></h3>
-  <canvas id="hohoho" width=350>
+  <canvas id="hohoho" width=330>
     <div class="txtStyle"></div>
   </canvas>
 </div>
@@ -68,16 +68,16 @@ function make() {
     $('#jack-mouth').css('opacity', (counter) + '%');
   }
 
-  if (10 == counter) {
+  if (100 == counter) {
     $('#hohoho').show();
     $('#clicks2').hide();
-    $('#clicks').text("메롱");
+    $('#clicks').text("윤예인님 최고!");
     $('#jiok-target').addClass('tada');
     var ctx = document.querySelector("canvas").getContext("2d"),
-    dashLen = 220, dashOffset = dashLen, speed = 10,
+    dashLen = 50, dashOffset = dashLen, speed = 10,
     txt = pumpkin.map(x=>String.fromCharCode(x)).join(''), x = 30, i = 0;
 
-    ctx.font = "30px Comic Sans MS, cursive, TSCu_Comic, sans-serif"; 
+    ctx.font = "30px Comic Sans MS"; 
     ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.globalAlpha = 2/3;
     ctx.strokeStyle = ctx.fillStyle = "#1f2f90";
 
@@ -98,17 +98,17 @@ function make() {
        }
     })();
   }
-  else if(10 < counter){
+  else if(100 < counter){
     $('#hohoho').hide();
     $('#clicks2').hide();
     $('#clicks').text("100번 넘게 때리니 살아났다!");
-    if(counter > 13){
+    if(counter > 103){
       counter = 0;
     }
   }
   else {
     $('#clicks2').show();
-    $('#clicks').text(10 - counter);
+    $('#clicks').text(100 - counter);
   }
 }
 
