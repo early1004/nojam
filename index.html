@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>윤예인님 좋아함미다!</title>
     <style>
         body {
@@ -10,7 +11,7 @@
             margin-top: 50px;
         }
         .question {
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin-bottom: 20px;
         }
         .question img {
@@ -19,8 +20,8 @@
             margin-bottom: 10px;
         }
         .options button {
-            font-size: 1em;
-            padding: 10px 20px;
+            font-size: 1.2em;
+            padding: 12px 25px;
             margin: 5px;
             cursor: pointer;
             border: none;
@@ -43,13 +44,13 @@
         }
         .result {
             margin-top: 30px;
-            font-size: 1.2em;
+            font-size: 1.4em;
             font-weight: bold;
         }
         .reset-button {
             margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.2em;
+            padding: 12px 25px;
+            font-size: 1.4em;
             background-color: #FF9800;
             color: white;
             border: none;
@@ -59,6 +60,41 @@
         }
         .reset-button:hover {
             background-color: #FF5722;
+        }
+
+        /* 반응형 디자인 */
+        @media screen and (max-width: 768px) {
+            .question {
+                font-size: 1.2em; /* 모바일에서 글씨 크기 줄이기 */
+            }
+            .options button {
+                font-size: 1.1em; /* 버튼 크기 줄이기 */
+                padding: 10px 20px; /* 버튼 패딩 줄이기 */
+            }
+            .result {
+                font-size: 1.2em; /* 결과 텍스트 크기 줄이기 */
+            }
+            .reset-button {
+                font-size: 1.2em; /* 리셋 버튼 크기 줄이기 */
+                padding: 10px 20px; /* 리셋 버튼 패딩 줄이기 */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .question {
+                font-size: 1em; /* 작은 화면에서 글씨 크기 더 줄이기 */
+            }
+            .options button {
+                font-size: 1em; /* 버튼 크기 더 줄이기 */
+                padding: 8px 15px; /* 버튼 패딩 더 줄이기 */
+            }
+            .result {
+                font-size: 1em; /* 결과 텍스트 크기 더 줄이기 */
+            }
+            .reset-button {
+                font-size: 1em; /* 리셋 버튼 크기 더 줄이기 */
+                padding: 8px 15px; /* 리셋 버튼 패딩 더 줄이기 */
+            }
         }
     </style>
 </head>
