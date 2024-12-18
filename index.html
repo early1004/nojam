@@ -15,8 +15,9 @@
             margin-bottom: 30px; /* 여백을 더 넓게 */
         }
         .question img {
-            max-width: 100%; /* 이미지 크기 자동 조정 */
-            height: auto; 
+            max-width: 100%; /* 이미지가 부모 요소의 너비를 넘지 않게 */
+            max-height: 70vh; /* 화면 높이에 맞춰 이미지 크기 조정 (최대 70% 높이) */
+            height: auto; /* 비율 유지 */
             margin-bottom: 20px; /* 이미지와 텍스트 사이 여백 조정 */
         }
         .options button {
