@@ -122,7 +122,7 @@
         <div class="question" id="question">
         </div>
         <img id="question-image" src="" >
-        <div class="options">
+        <div id="options" class="options">
             <button class="o-button" onclick="answer('O')">O</button>
             <button class="x-button" onclick="answer('X')">X</button>
         </div>
@@ -190,15 +190,18 @@
 
             function displayResult() {
                 const resultDiv = document.getElementById('result');
-                let resultText = '';
+                let resultText = '(결과 캡처 후 보내주십셔!)<br><br><br>';
                 const image = document.getElementById('question-image');
                 image.style.display = 'none'; 
 
                 const questionDiv = document.getElementById('question');
                 questionDiv.style.display = 'none'; 
 
+                const optionsDiv = document.getElementById('options');
+                optionsDiv.style.display = 'none'; 
+
                 if (responses[3] === 'O') {
-                    resultText = 
+                    resultText += 
                         (responses[0] === 'O' ? questions[0].oResponse : questions[0].xResponse) +
                         (responses[1] === 'O' ? questions[1].oResponse : questions[1].xResponse) +
                         (responses[2] === 'O' ? questions[2].oResponse : questions[2].xResponse) +
@@ -214,7 +217,7 @@
                     resultDiv.appendChild(additionalImage); 
                     resultDiv.innerHTML += '<br><br>'; 
                 } else {
-                    resultText = 
+                    resultText += 
                         (responses[0] === 'O' ? questions[0].oResponse : questions[0].xResponse) +
                         (responses[1] === 'O' ? questions[1].oResponse : questions[1].xResponse) +
                         (responses[2] === 'O' ? '말 안듣는 동생을 반으로 가르고 싶구나!<br><br>' : '말안듣는 동생을 반으로 가르진 않겠다!<br><br>') +
@@ -230,8 +233,6 @@
                     resultDiv.appendChild(additionalImage); 
                     resultDiv.innerHTML += '<br><br>';
                 }
-
-                resultText += '<br><br><br>(이 페이지를 캡쳐하여 한진택배에게 보여주세요.)';
 
                 const resetButton = document.createElement('button');
                 resetButton.className = 'reset-button';
