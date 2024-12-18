@@ -11,21 +11,21 @@
             margin-top: 50px;
         }
         .question {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+            font-size: 2em; /* 글씨 크기를 크게 */
+            margin-bottom: 30px; /* 여백을 더 넓게 */
         }
         .question img {
-            max-width: 100%; /* 이미지가 부모 요소의 너비를 넘지 않게 조정 */
-            height: auto; /* 비율을 유지하면서 높이를 자동으로 설정 */
-            margin-bottom: 10px;
+            max-width: 100%; /* 이미지 크기 자동 조정 */
+            height: auto; 
+            margin-bottom: 20px; /* 이미지와 텍스트 사이 여백 조정 */
         }
         .options button {
-            font-size: 1.2em;
-            padding: 12px 25px;
-            margin: 5px;
+            font-size: 2em; /* 버튼 크기를 크게 */
+            padding: 20px 40px; /* 버튼의 패딩을 더 크게 */
+            margin: 15px;
             cursor: pointer;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             transition: background-color 0.3s, transform 0.3s;
         }
         .options button.o-button {
@@ -43,18 +43,18 @@
             transform: scale(1.05);
         }
         .result {
-            margin-top: 30px;
-            font-size: 1.4em;
+            margin-top: 50px;
+            font-size: 2em; /* 결과 글씨 크기 크게 */
             font-weight: bold;
         }
         .reset-button {
-            margin-top: 20px;
-            padding: 12px 25px;
-            font-size: 1.4em;
+            margin-top: 30px;
+            padding: 20px 40px;
+            font-size: 2em; /* 리셋 버튼 크기 크게 */
             background-color: #FF9800;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -63,37 +63,54 @@
         }
 
         /* 반응형 디자인 */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             .question {
-                font-size: 1.2em; /* 모바일에서 글씨 크기 줄이기 */
+                font-size: 1.8em; /* 중간 크기 화면에서 글씨 크기 */
             }
             .options button {
-                font-size: 1.1em; /* 버튼 크기 줄이기 */
-                padding: 10px 20px; /* 버튼 패딩 줄이기 */
+                font-size: 1.8em; /* 버튼 크기 줄이기 */
+                padding: 18px 35px; /* 버튼 패딩 조정 */
             }
             .result {
-                font-size: 1.2em; /* 결과 텍스트 크기 줄이기 */
+                font-size: 1.8em; /* 결과 글씨 크기 줄이기 */
             }
             .reset-button {
-                font-size: 1.2em; /* 리셋 버튼 크기 줄이기 */
-                padding: 10px 20px; /* 리셋 버튼 패딩 줄이기 */
+                font-size: 1.8em; /* 리셋 버튼 크기 줄이기 */
+                padding: 18px 35px; /* 리셋 버튼 패딩 줄이기 */
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .question {
+                font-size: 1.6em; /* 작은 화면에서 글씨 크기 줄이기 */
+            }
+            .options button {
+                font-size: 1.5em; /* 버튼 크기 줄이기 */
+                padding: 16px 30px; /* 버튼 패딩 줄이기 */
+            }
+            .result {
+                font-size: 1.6em; /* 결과 글씨 크기 줄이기 */
+            }
+            .reset-button {
+                font-size: 1.6em; /* 리셋 버튼 크기 줄이기 */
+                padding: 16px 30px; /* 리셋 버튼 패딩 줄이기 */
             }
         }
 
         @media screen and (max-width: 480px) {
             .question {
-                font-size: 1em; /* 작은 화면에서 글씨 크기 더 줄이기 */
+                font-size: 1.4em; /* 더 작은 화면에서 글씨 크기 줄이기 */
             }
             .options button {
-                font-size: 1em; /* 버튼 크기 더 줄이기 */
-                padding: 8px 15px; /* 버튼 패딩 더 줄이기 */
+                font-size: 1.3em; /* 버튼 크기 줄이기 */
+                padding: 14px 25px; /* 버튼 패딩 줄이기 */
             }
             .result {
-                font-size: 1em; /* 결과 텍스트 크기 더 줄이기 */
+                font-size: 1.4em; /* 결과 글씨 크기 줄이기 */
             }
             .reset-button {
-                font-size: 1em; /* 리셋 버튼 크기 더 줄이기 */
-                padding: 8px 15px; /* 리셋 버튼 패딩 더 줄이기 */
+                font-size: 1.4em; /* 리셋 버튼 크기 줄이기 */
+                padding: 14px 25px; /* 리셋 버튼 패딩 줄이기 */
             }
         }
     </style>
@@ -115,25 +132,25 @@
         const questions = [
             {
                 text: '소는 카톡을 제대로 읽지도 않고 말도 안듣는다.',
-                image: '', // 첫 번째 이미지 경로
+                image: '', 
                 oResponse: '소는 카톡을 제대로 읽지도 않고 말도 안듣고,<br>',
                 xResponse: '소는 카톡을 제대로 읽고 말도 잘듣고,<br>'
             },
             {
                 text: '하루이틀도 아니고 자주 그러는게 대화하고 싶지 않다.',
-                image: '', // 두 번째 이미지 경로
+                image: '', 
                 oResponse: '하루이틀도 아니고 자주 그러는게 대화하고 싶지 않고,<br>',
                 xResponse: '그래도 소랑 재밌게 대화하고 싶고,<br>'
             },
             {
                 text: '말안듣는 동생을 반으로 가르고 싶다.',
-                image: './images/half.jpg', // 세 번째 이미지 경로
+                image: './images/half.jpg', 
                 oResponse: '말안듣는 동생을 반으로 가르고 싶지만,<br><br>',
                 xResponse: '말안듣는 동생을 반으로 가를 순 없지만,<br><br>'
             },
             {
                 text: '그래도 언니의 마음으로 이번에도 봐준다.',
-                image: './images/plz.gif', // 네 번째 이미지 경로
+                image: './images/plz.gif', 
                 oResponse: '또 봐준다니 완전 에바다. <br> 그래도 언니의 마음으로 이번에도 봐주겠다.<br>',
                 xResponse: '봐주긴 뭘 봐주나. 그동안 많이 봐줬다.<br>뭐 이런걸 만들었대<br>쳐자빠져 자라!!<br>난 동생 필요없다!<br>'
             }
@@ -142,30 +159,23 @@
         let currentQuestion = 0;
         const responses = [];
 
-        // DOMContentLoaded 이벤트로 DOM이 로드된 후에 JavaScript 코드 실행
         document.addEventListener('DOMContentLoaded', function() {
-            displayQuestion(); // 첫 번째 질문을 표시
+            displayQuestion(); 
 
-            // 질문 표시 함수
             function displayQuestion() {
                 const questionDiv = document.getElementById('question');
                 const image = document.getElementById('question-image');
                 
                 questionDiv.innerHTML = questions[currentQuestion].text;
-                image.src = questions[currentQuestion].image; // 해당 질문의 이미지를 동적으로 설정
+                image.src = questions[currentQuestion].image; 
                 
-                // 이미지 로드 여부 체크
                 const img = new Image();
                 img.onload = function() {
-                    image.src = questions[currentQuestion].image; // 이미지가 로드되었을 때만 설정
+                    image.src = questions[currentQuestion].image; 
                 };
-                img.onerror = function() {
-                    //console.error('이미지를 찾을 수 없습니다.');
-                };
-                img.src = questions[currentQuestion].image; // 이미지 경로 설정
+                img.src = questions[currentQuestion].image; 
             }
 
-            // 답변 함수
             window.answer = function(choice) {
                 responses.push(choice);
                 currentQuestion++;
@@ -177,15 +187,14 @@
                 }
             };
 
-            // 결과 표시 함수
             function displayResult() {
                 const resultDiv = document.getElementById('result');
                 let resultText = '';
                 const image = document.getElementById('question-image');
-                image.style.display = 'none'; // 기존 이미지 숨기기
+                image.style.display = 'none'; 
 
                 const questionDiv = document.getElementById('question');
-                questionDiv.style.display = 'none'; // 기존 이미지 숨기기
+                questionDiv.style.display = 'none'; 
 
                 if (responses[3] === 'O') {
                     resultText = 
@@ -193,17 +202,16 @@
                         (responses[1] === 'O' ? questions[1].oResponse : questions[1].xResponse) +
                         (responses[2] === 'O' ? questions[2].oResponse : questions[2].xResponse) +
                         questions[3].oResponse;
-                        // 'O'를 눌렀을 때만 이미지 추가
-                        const additionalImage = document.createElement('img');
-                        additionalImage.src = './images/e.jpg'; // 추가할 이미지 경로
-                        additionalImage.style.maxWidth = '30%';  // 이미지가 페이지 너비를 넘지 않도록 설정
-                        additionalImage.style.height = 'auto';   // 이미지 비율 유지
 
-                        // 이미지 앞뒤로 줄바꿈 추가
-                        resultText += '<br><br>';
-                        resultDiv.innerHTML = resultText;
-                        resultDiv.appendChild(additionalImage); // 추가된 이미지 DOM에 추가
-                        resultDiv.innerHTML += '<br><br>'; // 이미지 뒤에 줄바꿈 추가
+                    const additionalImage = document.createElement('img');
+                    additionalImage.src = './images/e.jpg'; 
+                    additionalImage.style.maxWidth = '50%';  
+                    additionalImage.style.height = 'auto';   
+
+                    resultText += '<br><br>';
+                    resultDiv.innerHTML = resultText;
+                    resultDiv.appendChild(additionalImage); 
+                    resultDiv.innerHTML += '<br><br>'; 
                 } else {
                     resultText = 
                         (responses[0] === 'O' ? questions[0].oResponse : questions[0].xResponse) +
@@ -211,23 +219,19 @@
                         (responses[2] === 'O' ? '말 안듣는 동생을 반으로 가르고 싶구나!<br><br>' : '말안듣는 동생을 반으로 가르진 않겠다!<br><br>') +
                         questions[3].xResponse;
 
-                        // 'X'를 눌렀을 때만 이미지 추가
-                        const additionalImage = document.createElement('img');
-                        additionalImage.src = './images/jj.jpg'; // 추가할 이미지 경로
-                        additionalImage.style.maxWidth = '30%';  // 이미지가 페이지 너비를 넘지 않도록 설정
-                        additionalImage.style.height = 'auto';   // 이미지 비율 유지
+                    const additionalImage = document.createElement('img');
+                    additionalImage.src = './images/jj.jpg'; 
+                    additionalImage.style.maxWidth = '50%';  
+                    additionalImage.style.height = 'auto';   
 
-                        // 이미지 앞뒤로 줄바꿈 추가
-                        resultText += '<br><br>';
-                        resultDiv.innerHTML = resultText;
-                        resultDiv.appendChild(additionalImage); // 추가된 이미지 DOM에 추가
-                        resultDiv.innerHTML += '<br><br>'; // 이미지 뒤에 줄바꿈 추가
+                    resultText += '<br><br>';
+                    resultDiv.innerHTML = resultText;
+                    resultDiv.appendChild(additionalImage); 
+                    resultDiv.innerHTML += '<br><br>';
                 }
 
                 resultText += '<br><br><br>(이 페이지를 캡쳐하여 한진택배에게 보여주세요.)';
 
-
-                // 마음 바꾸기 버튼 추가
                 const resetButton = document.createElement('button');
                 resetButton.className = 'reset-button';
                 resetButton.innerHTML = '마음 바꾸기';
@@ -236,9 +240,7 @@
 
             }
 
-            // 퀴즈 리셋 함수
             window.resetQuiz = function() {
-                // 페이지 새로 고침
                 location.reload();
             };
         });
