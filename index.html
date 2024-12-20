@@ -138,7 +138,7 @@
             // 마지막 질문에서 X 영역 너비 좁히기
             if (currentQuestion === questions.length - 1) {
                 const xZone = document.querySelector('.zone.x-zone');
-                xZone.style.flex = '0.05'; // X 영역을 좁게
+                xZone.style.flex = '0.1'; // X 영역을 좁게
             } else {
                 const xZone = document.querySelector('.zone.x-zone');
                 xZone.style.flex = '1'; // 기본 X 영역 크기
@@ -150,7 +150,7 @@
             const gameAreaWidth = gameArea.offsetWidth;
             const gunWidth = gun.offsetWidth;
 
-            let speed = 20; // 기본 속도
+            let speed = 10; // 기본 속도
 
             setInterval(() => {
                 // 마지막 질문에서는 속도를 더 빠르게 설정
