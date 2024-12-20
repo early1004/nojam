@@ -9,43 +9,57 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
+            overflow: hidden;
         }
         .question {
-            font-size: 2em; /* 글씨 크기를 크게 */
-            margin-bottom: 30px; /* 여백을 더 넓게 */
+            font-size: 1.8em;
+            margin-bottom: 20px;
         }
         #question-image {
-            max-width: 100%; /* 이미지가 부모 요소의 너비를 넘지 않게 */
-            max-height: 50vh; /* 화면 높이에 맞춰 이미지 크기 조정 (최대 50% 높이) */
-            height: auto; /* 비율 유지 */
-            margin-bottom: 20px; /* 이미지와 텍스트 사이 여백 조정 */
+            max-width: 100%;
+            max-height: 40vh;
+            height: auto;
+            margin-bottom: 20px;
         }
-        .options button {
-            font-size: 2em; /* 버튼 크기를 크게 */
-            padding: 20px 40px; /* 버튼의 패딩을 더 크게 */
-            margin: 15px;
-            cursor: pointer;
-            border: none;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.3s;
+        #game-area {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border: 2px solid #000;
+            overflow: hidden;
+            margin: 0 auto;
+            display: flex;
         }
-        .options button.o-button {
-            background-color: #4CAF50;
-            color: white;
+        .zone {
+            flex: 1;
+            height: 100%;
+            position: relative;
         }
-        .options button.x-button {
-            background-color: #F44336;
-            color: white;
+        .zone.o-zone {
+            background-color: #d4f4dd;
         }
-        .options button:hover {
-            transform: scale(1.1);
+        .zone.x-zone {
+            background-color: #f4d4d4;
         }
-        .options button:active {
-            transform: scale(1.05);
+        .label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .gun {
+            position: absolute;
+            bottom: 50px;
+            width: 40px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
         }
         .result {
-            margin-top: 50px;
-            font-size: 2em; /* 결과 글씨 크기 크게 */
+            margin-top: 40px;
+            font-size: 1.5em;
             font-weight: bold;
         }
         .reset-button {
@@ -62,190 +76,148 @@
         .reset-button:hover {
             background-color: #FF5722;
         }
-
-        /* 반응형 디자인 */
-        @media screen and (max-width: 1024px) {
-            .question {
-                font-size: 1.8em; /* 중간 크기 화면에서 글씨 크기 */
-            }
-            .options button {
-                font-size: 1.8em; /* 버튼 크기 줄이기 */
-                padding: 18px 35px; /* 버튼 패딩 조정 */
-            }
-            .result {
-                font-size: 1.8em; /* 결과 글씨 크기 줄이기 */
-            }
-            .reset-button {
-                font-size: 1.8em; /* 리셋 버튼 크기 줄이기 */
-                padding: 18px 35px; /* 리셋 버튼 패딩 줄이기 */
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .question {
-                font-size: 1.6em; /* 작은 화면에서 글씨 크기 줄이기 */
-            }
-            .options button {
-                font-size: 1.5em; /* 버튼 크기 줄이기 */
-                padding: 16px 30px; /* 버튼 패딩 줄이기 */
-            }
-            .result {
-                font-size: 1.6em; /* 결과 글씨 크기 줄이기 */
-            }
-            .reset-button {
-                font-size: 1.6em; /* 리셋 버튼 크기 줄이기 */
-                padding: 16px 30px; /* 리셋 버튼 패딩 줄이기 */
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .question {
-                font-size: 1.4em; /* 더 작은 화면에서 글씨 크기 줄이기 */
-            }
-            .options button {
-                font-size: 1.3em; /* 버튼 크기 줄이기 */
-                padding: 14px 25px; /* 버튼 패딩 줄이기 */
-            }
-            .result {
-                font-size: 1.4em; /* 결과 글씨 크기 줄이기 */
-            }
-            .reset-button {
-                font-size: 1.4em; /* 리셋 버튼 크기 줄이기 */
-                padding: 14px 25px; /* 리셋 버튼 패딩 줄이기 */
-            }
-        }
     </style>
 </head>
 <body>
     <h1></h1>
     <div id="test-container">
-        <div class="question" id="question">
-        </div>
-        <img id="question-image" src="" >
-        <div id="options" class="options">
-            <button class="o-button" onclick="answer('O')">O</button>
-            <button class="x-button" onclick="answer('X')">X</button>
+        <div class="question" id="question"></div>
+        <img id="question-image" src="">
+        <div id="game-area">    
+            <div class="zone o-zone">
+                <div class="label">O</div>
+            </div>
+            <div class="zone x-zone">
+                <div class="label">X</div>
+            </div>
+            <div class="gun" id="gun"></div>
         </div>
     </div>
     <div class="result" id="result"></div>
 
     <script>
         const questions = [
-            {
-                text: '소는 카톡을 제대로 읽지도 않고 말도 안듣는다.',
-                image: '', 
-                oResponse: '소는 카톡을 제대로 읽지도 않고 말도 안듣고,<br>',
-                xResponse: '소는 카톡을 제대로 읽지는 않지만 말은 잘듣고,<br>'
-            },
-            {
-                text: '하루이틀도 아니고 자주 그러는게 대화하고 싶지 않다.',
-                image: '', 
-                oResponse: '하루이틀도 아니고 자주 그러는게 대화하고 싶지 않고,<br>',
-                xResponse: '그래도 소랑 재밌게 대화하고 싶고,<br>'
-            },
-            {
-                text: '말안듣는 동생을 반으로 가르고 싶다.',
-                image: './images/half.jpg', 
-                oResponse: '말안듣는 동생을 반으로 가르고 싶지만,<br><br>',
-                xResponse: '말안듣는 동생을 반으로 가를 순 없지만,<br><br>'
-            },
-            {
-                text: '그래도 언니의 마음으로 이번에도 봐준다.',
-                image: './images/plz.gif', 
-                oResponse: '또 봐준다니 완전 에바다. <br> 그래도 언니의 마음으로 이번에도 봐주겠다.<br>',
-                xResponse: '봐주긴 뭘 봐주나. 그동안 많이 봐줬다.<br>뭐 이런걸 만들었대<br>쳐자빠져 자라!!<br>난 동생 필요없다!<br>'
-            }
+            { text: '소는 카톡을 제대로 읽지도 않고 말도 안듣는다.', image: '', oResponse: '소는 카톡을 제대로 읽지도 않고 말도 안듣고,<br>', xResponse: '소는 카톡을 제대로 읽지는 않지만 말은 잘듣고,<br>' },
+            { text: '하루이틀도 아니고 자주 그러는게 대화하고 싶지 않다.', image: '', oResponse: '하루이틀도 아니고 자주 그러는게 대화하고 싶지 않고,<br>', xResponse: '그래도 소랑 재밌게 대화하고 싶고,<br>' },
+            { text: '말안듣는 동생을 반으로 가르고 싶다.', image: './images/half.jpg', oResponse: '말안듣는 동생을 반으로 가르고 싶지만,<br><br>', xResponse: '말안듣는 동생을 반으로 가를 순 없지만,<br><br>' },
+            { text: '그래도 언니의 마음으로 이번에도 봐준다.', image: './images/plz.gif', oResponse: '또 봐준다니 완전 에바다. <br> 그래도 언니의 마음으로 이번에도 봐주겠다.<br>', xResponse: '봐주긴 뭘 봐주나. 그동안 많이 봐줬다.<br>뭐 이런걸 만들었대<br>쳐자빠져 자라!!<br>난 동생 필요없다!<br>' }
         ];
 
         let currentQuestion = 0;
         const responses = [];
+        const gun = document.getElementById('gun');
+        let gunDirection = 1; // 1: 오른쪽, -1: 왼쪽
+        let gunPosition = 0;
 
-        document.addEventListener('DOMContentLoaded', function() {
-            displayQuestion(); 
+        document.addEventListener('DOMContentLoaded', function () {
+            displayQuestion();
+            moveGun();
 
-            function displayQuestion() {
-                const questionDiv = document.getElementById('question');
-                const image = document.getElementById('question-image');
-                
-                questionDiv.innerHTML = questions[currentQuestion].text;
-                image.src = questions[currentQuestion].image; 
-                
-                const img = new Image();
-                img.onload = function() {
-                    image.src = questions[currentQuestion].image; 
-                };
-                img.src = questions[currentQuestion].image; 
-            }
+            document.addEventListener('click', function () {
+                const gameAreaWidth = this.offsetWidth;
 
-            window.answer = function(choice) {
-                responses.push(choice);
-                currentQuestion++;
+                const xZone = document.querySelector('.zone.x-zone');
+                const xZoneWidth = xZone.offsetWidth;
 
-                if (currentQuestion < questions.length) {
-                    displayQuestion();
+                if (gunPosition >= gameAreaWidth - xZoneWidth) {
+                    // X 영역으로 이동한 경우
+                    answer('X');
                 } else {
-                    displayResult();
+                    // O 영역으로 이동한 경우
+                    answer('O');
                 }
-            };
-
-            function displayResult() {
-                const resultDiv = document.getElementById('result');
-                let resultText = '(결과 캡처 후 보내주시면 감사하겠슴다!)<br><br><br>';
-                const image = document.getElementById('question-image');
-                image.style.display = 'none'; 
-
-                const questionDiv = document.getElementById('question');
-                questionDiv.style.display = 'none'; 
-
-                const optionsDiv = document.getElementById('options');
-                optionsDiv.style.display = 'none'; 
-
-                if (responses[3] === 'O') {
-                    resultText += 
-                        (responses[0] === 'O' ? questions[0].oResponse : questions[0].xResponse) +
-                        (responses[1] === 'O' ? questions[1].oResponse : questions[1].xResponse) +
-                        (responses[2] === 'O' ? questions[2].oResponse : questions[2].xResponse) +
-                        questions[3].oResponse;
-
-                    const additionalImage = document.createElement('img');
-                    additionalImage.src = './images/e.jpg'; 
-                    additionalImage.style.maxWidth = '50%';  
-                    additionalImage.style.height = 'auto';   
-
-                    resultText += '<br><br>';
-                    resultDiv.innerHTML = resultText;
-                    resultDiv.appendChild(additionalImage); 
-                    resultDiv.innerHTML += '<br><br>'; 
-                } else {
-                    resultText += 
-                        (responses[0] === 'O' ? questions[0].oResponse : questions[0].xResponse) +
-                        (responses[1] === 'O' ? questions[1].oResponse : questions[1].xResponse) +
-                        (responses[2] === 'O' ? '말 안듣는 동생을 반으로 가르고 싶구나!<br><br>' : '말안듣는 동생을 반으로 가르진 않겠다!<br><br>') +
-                        questions[3].xResponse;
-
-                    const additionalImage = document.createElement('img');
-                    additionalImage.src = './images/jj.jpg'; 
-                    additionalImage.style.maxWidth = '50%';  
-                    additionalImage.style.height = 'auto';   
-
-                    resultText += '<br><br>';
-                    resultDiv.innerHTML = resultText;
-                    resultDiv.appendChild(additionalImage); 
-                    resultDiv.innerHTML += '<br><br>';
-                }
-
-                const resetButton = document.createElement('button');
-                resetButton.className = 'reset-button';
-                resetButton.innerHTML = '마음 바꾸기';
-                resetButton.onclick = resetQuiz;
-                resultDiv.appendChild(resetButton);
-
-            }
-
-            window.resetQuiz = function() {
-                location.reload();
-            };
+            });
         });
+
+        function displayQuestion() {
+            const questionDiv = document.getElementById('question');
+            const image = document.getElementById('question-image');
+            questionDiv.innerHTML = questions[currentQuestion].text;
+            image.src = questions[currentQuestion].image;
+
+            // 마지막 질문에서 X 영역 너비 좁히기
+            if (currentQuestion === questions.length - 1) {
+                const xZone = document.querySelector('.zone.x-zone');
+                xZone.style.flex = '0.05'; // X 영역을 좁게
+            } else {
+                const xZone = document.querySelector('.zone.x-zone');
+                xZone.style.flex = '1'; // 기본 X 영역 크기
+            }
+        }
+
+        function moveGun() {
+            const gameArea = document.getElementById('game-area');
+            const gameAreaWidth = gameArea.offsetWidth;
+            const gunWidth = gun.offsetWidth;
+
+            setInterval(() => {
+                gunPosition += gunDirection * 30; // 속도 증가
+                if (gunPosition <= 0 || gunPosition >= gameAreaWidth - gunWidth) {
+                    gunDirection *= -1; // 방향 반전
+                }
+                gun.style.left = `${gunPosition}px`;
+            }, 20);
+        }
+
+        function answer(choice) {
+            responses.push(choice);
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                displayResult();
+            }
+        }
+
+        function displayResult() {
+            const resultDiv = document.getElementById('result');
+            const questionDiv = document.getElementById('question');
+            const gameArea = document.getElementById('game-area');
+            const imgDiv = document.getElementById('question-image');
+            
+            questionDiv.style.display = 'none';
+            gameArea.style.display = 'none';
+            imgDiv.style.display = 'none';
+
+            let resultText = '(결과 캡처 후 보내주시면 감사하겠슴다!)<br><br><br>';
+            resultText += responses
+                .map((choice, index) => (choice === 'O' ? questions[index].oResponse : questions[index].xResponse))
+                .join('');
+            resultDiv.innerHTML = resultText;
+
+            const lastChoice = responses[responses.length - 1];
+            if (lastChoice === 'O') {
+                const additionalImage = document.createElement('img');
+                additionalImage.src = './images/e.jpg'; 
+                additionalImage.style.maxWidth = '50%';  
+                additionalImage.style.height = 'auto';   
+
+                resultText += '<br><br>';
+                resultDiv.innerHTML = resultText;
+                resultDiv.appendChild(additionalImage); 
+                resultDiv.innerHTML += '<br><br>'; 
+            } else {
+                const additionalImage = document.createElement('img');
+                additionalImage.src = './images/jj.jpg'; 
+                additionalImage.style.maxWidth = '50%';  
+                additionalImage.style.height = 'auto';   
+
+                resultText += '<br><br>';
+                resultDiv.innerHTML = resultText;
+                resultDiv.appendChild(additionalImage); 
+                resultDiv.innerHTML += '<br><br>';
+            }
+
+            const resetButton = document.createElement('button');
+            resetButton.className = 'reset-button';
+            resetButton.innerHTML = '마음 바꾸기';
+            resetButton.onclick = resetQuiz;
+            resultDiv.appendChild(resetButton);
+        }
+        window.resetQuiz = function() {
+                location.reload();
+        };
     </script>
 </body>
 </html>
