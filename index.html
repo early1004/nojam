@@ -150,14 +150,22 @@
             const gameAreaWidth = gameArea.offsetWidth;
             const gunWidth = gun.offsetWidth;
 
+            let speed = 20; // 기본 속도
+
             setInterval(() => {
-                gunPosition += gunDirection * 30; // 속도 증가
+                // 마지막 질문에서는 속도를 더 빠르게 설정
+                if (currentQuestion === questions.length - 1) {
+                    speed = 30; // 마지막 질문일 때 빠르게
+                }
+
+                gunPosition += gunDirection * speed; // 속도 증가
                 if (gunPosition <= 0 || gunPosition >= gameAreaWidth - gunWidth) {
                     gunDirection *= -1; // 방향 반전
                 }
                 gun.style.left = `${gunPosition}px`;
             }, 20);
         }
+
 
         function answer(choice) {
             responses.push(choice);
